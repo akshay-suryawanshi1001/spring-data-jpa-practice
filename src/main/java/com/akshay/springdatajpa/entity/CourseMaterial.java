@@ -32,7 +32,8 @@ public class CourseMaterial {
 	
 	//now course_material cannot exist without course table so here we need to add courseId as the foreign key from course table
 	@OneToOne(cascade = CascadeType.ALL, //this eventually mean save the course first and then save coursematerial
-			fetch = FetchType.LAZY)  
+			fetch = FetchType.EAGER,
+			optional = false)          //now due to this line for every courseMaterila course is mandatory  
 	@JoinColumn(
 			name = "course_id" ,    /* foreign key column name in this table*/
 			referencedColumnName = "courseId"  /*coulmn name from the course table which we want to refer here*/

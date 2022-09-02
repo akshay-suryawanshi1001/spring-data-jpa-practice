@@ -49,3 +49,12 @@ b. lazy fetching: we fetch parent table data then only that will be fetched, unl
 	we can make this mapping bidirectional by 
 	@OneToOne(mappedBy = "course") //membername from the @joincloumn class
 	private CourseMaterial courseMaterial;
+	
+12.@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "course_student_mapping",   /* name of the new mapping table to be created*/
+	joinColumns = @JoinColumn(name = "course_id",    /*name of the column containing id of course table*/
+			referencedColumnName = "courseId"),     //name of the member from Course class to put in course_id
+	inverseJoinColumns = @JoinColumn(name = "student_id",  /*name of the column containing id of student table*/
+			referencedColumnName = "studentId")
+	)              
+	private List<Student> students;
